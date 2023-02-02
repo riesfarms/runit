@@ -4,13 +4,14 @@ __all__ = ['UREG', 'WEIGHT_UNIT', 'Quantity', 'Unit', 'unit', 'with_unit', 'to_d
            'to', 'ton', 'pound']
 
 # Cell
+from decimal import Decimal
 from typing import Dict, NamedTuple
 
 import pint
 
 # Cell
 # default system of units used throughout the application
-UREG = pint.UnitRegistry(system="US")
+UREG = pint.UnitRegistry(system="US", non_int_type=Decimal)
 
 # default unit of weight used for reporting weights
 WEIGHT_UNIT = UREG.pound
