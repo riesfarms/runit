@@ -25,9 +25,9 @@ def unit(sunit: str) -> Unit:
     return UREG(sunit)
 
 # Cell
-def with_unit(value: float, sunit: str) -> Quantity:
+def with_unit(value: Decimal, sunit: str) -> Quantity:
     """Attach the given unit to the value."""
-    return value * unit(sunit)
+    return UREG.Quantity(value, sunit)
 
 # Cell
 def to_dimensions(unit: Unit) -> Dict[str, int]:
@@ -38,7 +38,7 @@ def to_dimensions(unit: Unit) -> Dict[str, int]:
 class SplitQuantity(NamedTuple):
     """A quantity as a dimensionless number and unit description."""
 
-    magnitude: float
+    magnitude: Decimal
     sunit: str
 
 # Cell
@@ -52,11 +52,11 @@ def to(quantity: Quantity, sunit: str) -> Quantity:
     return quantity.to(unit(sunit))
 
 # Cell
-def ton(value: float) -> Quantity:
+def ton(value: Decimal) -> Quantity:
     """Cast the value as a weight in tons."""
     return with_unit(value=value, sunit="ton")
 
 # Cell
-def pound(value: float) -> Quantity:
+def pound(value: Decimal) -> Quantity:
     """Cast the value as a weight in pounds."""
     return with_unit(value=value, sunit="pound")
